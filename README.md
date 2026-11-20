@@ -2,7 +2,7 @@
 
 A controlled comparison of five deepfake detectors — CNNDetect, EfficientNet-B4, CLIP with LoRA, DIRE, and FIRE — for spotting diffusion-generated images (Midjourney, Stable Diffusion). Each model is evaluated zero-shot and after architecture-specific fine-tuning, on identical in-distribution splits drawn from OpenFake and on an out-of-distribution set of images from 18 unseen generators. CLIP+LoRA is the strongest and most robust detector, and the only one to generalize meaningfully beyond the generators seen in training.
 
-Course project for CMP603 Advanced Computer Vision, Cairo University. The paper (PDF and LaTeX source) is in `Paper/`, and the slides in `Presentation/`.
+Course project for CMP603 Advanced Computer Vision, Cairo University. The paper (PDF and LaTeX source) is in `Paper/`.
 
 ## Structure
 
@@ -16,7 +16,6 @@ Code/
   FIRE/
 Dataset/                       dataset links
 Paper/                         LaTeX source + PDF
-Presentation/                  slides
 ```
 
 ## Running it
