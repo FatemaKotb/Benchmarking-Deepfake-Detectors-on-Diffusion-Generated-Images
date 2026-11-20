@@ -1,0 +1,38 @@
+\section{Introduction}
+\label{sec:introduction}
+
+\subsection{Background}
+\label{subsec:background}
+Advancements  in AI-generated images has accelerated  dramatically with the emergence of diffusion-based image generation models. Systems such as Stable Diffusion and Midjourney have made it possible for virtually any user to produce photorealistic images from natural-language prompts, with high quality that in many cases is indistinguishable from authentic photographs. Unlike earlier generative approaches based on Generative Adversarial Networks (GANs)~\cite{goodfellow2014gan}, diffusion models synthesize images through an iterative denoising process that does not rely on the convolutional upsampling pipelines characteristic of GAN architectures.
+
+The rapid spread of AI generation tools has brought serious challenges. These fake images can be used to spread fake news, forge evidence, or steal identities, causing real harm that we can't easily fix without smart, automatic detection software. Making matters more difficult, as AI-generated images look more realistic by the day, the visual gap between real and fake is vanishing. This puts immense pressure on detection systems, which now have to catch fakes from new AI generators they have never even seen before.
+
+\subsection{Problem Statement}
+\label{subsec:problem-statement}
+
+Deepfake detection has historically been formulated as a supervised binary classification task: given an image, predict whether it was captured by a camera or produced by a generative model. Early detectors exploited the distinctive frequency-domain fingerprints left by GAN generators~\cite{goodfellow2014gan}, achieving strong performance within the GAN domain. The transition to diffusion-based generation, however, has disrupted the assumptions underlying these methods, motivating the development of new detection paradigms. Recent approaches have explored reconstruction-based representations such as DIRE~\cite{wang2023dire} and FIRE~\cite{chen2025fire} which leverage the fact that pretrained diffusion models reconstruct synthetic images with lower error than real ones. Complementary work has investigated the transferability of large-scale vision-language representations such as CLIP~\cite{radford2021clip}, whose features encode broad visual semantics rather than generator-specific artifacts, either directly or through lightweight parameter-efficient adaptation via Low-Rank Adaptation (LoRA)~\cite{hu2022lora,cappelletti2024lora}.
+
+While research in this area is growing, we still don't fully understand how these different detection methods stack up against each other under the same conditions. Existing studies usually test only a single detector or a few closely related models. Because they use different datasets and different data setup steps, comparing them directly is nearly impossible. What we are missing is a systematic, controlled comparison of completely different detector styles ranging from traditional CNN-based forensics to general visual classifiers and diffusion-based reconstruction tools tested on the exact same benchmark of diffusion-generated images.
+
+\subsection{Research Objectives}
+\label{subsec:research-objectives}
+
+This work addresses the lack of controlled comparative evaluations for deepfake detectors targeting diffusion-generated images. Currently, models are often evaluated in isolation, leaving their relative performance and generalization capabilities difficult to assess. This study focuses on the following objectives:
+
+\begin{itemize}
+    \item \textbf{Compare detection paradigms under controlled conditions:} By evaluating all models on identical dataset splits with consistent preprocessing, we isolate architectural and representational differences as the primary source of performance variation.
+    \item \textbf{Assess the effect of fine-tuning across architectures:} We apply architecture-specific partial fine-tuning to each model using a shared dataset of real, Midjourney-generated, and Stable Diffusion-generated images, then measure the performance change relative to the zero-shot baseline.
+    \item \textbf{Evaluate cross-generator robustness:} We test the fine-tuned models on a held-out out-of-distribution set containing images from unseen generators to quantify how well each model generalizes beyond its training distribution.
+\end{itemize}
+
+\subsection{Contributions}
+\label{subsec:contributions}
+
+The contributions of this work are summarized as follows:
+\begin{enumerate}
+    \item A unified comparative evaluation framework for five deepfake detection models across CNN-based, vision-language, and reconstruction-based detection paradigms.
+    \item Evaluation of both zero-shot and fine-tuned performance on diffusion-generated images using identical in-distribution dataset splits.
+    \item Construction of OpenFake-derived in-distribution and out-of-distribution evaluation sets for benchmarking detection on seen and unseen image generators.
+    \item Documentation of model-specific fine-tuning strategies, including trainable parameter counts, loss configurations, and training settings for architecturally diverse detectors.
+    \item Comparative analysis of in-distribution adaptation and out-of-distribution generalization across all evaluated models.
+\end{enumerate}

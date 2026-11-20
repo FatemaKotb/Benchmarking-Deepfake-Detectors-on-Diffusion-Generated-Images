@@ -1,0 +1,11 @@
+\section{Conclusion}
+\label{sec:conclusion}
+This study evaluated five deepfake detection models across zero-shot and fine-tuned settings, on both in-distribution and out-of-distribution diffusion-generated images. The results reveal a consistent gap between in-distribution performance and real-world generalization that affects all models to varying degrees.
+In the zero-shot setting, no model transfers reliably to our dataset without adaptation. Models such as DIRE and FIRE default to predicting everything as fake, while CNNDetect defaults to predicting everything as real, both reflecting strong biases from their original training distributions rather than genuine detection ability. 
+
+Fine-tuning improves in-distribution performance across all models, with CLIP+LoRA reaching 95.11\% accuracy and 99.21\% AUC, and EfficientNet and CNNDetect also achieving strong results. However, this improvement is not consistent across all models. DIRE and FIRE fall below random-level AUC after fine-tuning, and EfficientNet reverts to near-random performance, demonstrating that high in-distribution accuracy does not guarantee robustness to unseen generators.
+
+CLIP+LoRA is the only model that maintains meaningful generalization under out-of-distribution conditions. In contrast, reconstruction-based methods like DIRE and FIRE, despite being theoretically promising approaches for diffusion-generated image detection, prove too dependent on the reconstruction signatures of their training generators to generalize in practice.
+
+
+Overall, the findings indicate that current deepfake detection models still struggle to learn generalizable features for diffusion-generated images. Improving robustness to unseen generators remains an open challenge.

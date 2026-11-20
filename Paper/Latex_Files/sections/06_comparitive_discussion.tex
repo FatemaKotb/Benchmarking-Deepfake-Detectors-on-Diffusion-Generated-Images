@@ -1,0 +1,20 @@
+\section{Comparative Discussion}
+\label{sec:comparative-discussion}
+This section discusses the main trends observed across the in-distribution and out-of-distribution evaluations. The complete quantitative results are reported in Appendix~\ref{app:complete-results}. Specifically, Table~\ref{tab:appendix-id-zero-shot} reports the in-distribution zero-shot results, Table~\ref{tab:appendix-id-fine-tuned} reports the in-distribution fine-tuned results, Table~\ref{tab:appendix-ood-zero-shot} reports the out-of-distribution zero-shot results, and Table~\ref{tab:appendix-ood-fine-tuned} reports the out-of-distribution fine-tuned results.
+
+Each appendix table reports accuracy, ROC AUC, precision, recall, and F1-score for the real class, fake class, and macro average. In the discussion below, we focus mainly on macro F1-score and ROC AUC. Macro F1-score is used to assess class-balanced detection performance, while ROC AUC is used to measure threshold-independent separability between real and fake images.
+
+\subsection{Zero-Shot Performance}
+No model achieves reliable detection in the zero-shot setting.As shown in Table~\ref{tab:appendix-id-zero-shot}, most models have low macro F1 and ROC AUC values close to random guessing. Some models, such as CNNDetect and DIRE, achieve relatively higher accuracy, but this is misleading due to the 2:1 class imbalance in the dataset, resulting in very low recall for real images and poor balanced performance. The macro F1-scores across all five models remain below 51\%, indicating that none of the pretrained weights transfer meaningfully to our dataset without adaptation.
+
+\subsection{In-Distribution Fine-Tuned Performance}
+After fine-tuning (Table~\ref{tab:appendix-id-fine-tuned}), all models improve significantly, but a clear difference is revealed between discriminative and reconstruction-based models. CLIP+LoRA achieves the best performance with very high macro F1 (94.34\%) and ROC AUC (99.21\%), followed by EfficientNet and CNNDetect. In contrast, DIRE and FIRE show only moderate improvement. This gap suggests that the reconstruction-based detection mechanism these models rely on is not well suited to the generators in our dataset,and that fine-tuning the classifier head alone is insufficient.
+
+\subsection{Out-of-Distribution Generalization}
+However, this improvement does not generalize well to unseen generators. In the out-of-distribution zero-shot setting (Table~\ref{tab:appendix-ood-zero-shot}), performance remains unstable, with most models showing strong class bias and low macro F1. DIRE and FIRE again achieve higher accuracy, but still suffer from almost zero recall for real images. 
+After fine-tuning (Table~\ref{tab:appendix-ood-fine-tuned}), performance drops for most models compared to in-distribution results, confirming limited generalization.
+DIRE and FIRE collapse entirely, with AUC scores both falling below chance, indicating that fine-tuning has caused them to overfit to the reconstruction signatures of seen generators and actively fail on unseen ones.EfficientNet also loses nearly all discriminative ability showing that its in-distribution gains do not transfer.  CNNDetect retains partial performance though still far from reliable detection.
+CLIP+LoRA stands apart as the only model that maintains meaningful separability with relatively strong ROC AUC (83.45\%), but its macro F1 decreases due to imbalance between classes. 
+
+\subsection{Summary}
+Across both evaluation settings, CLIP+LoRA is the most consistent model, combining strong in-distribution performance with the best OOD generalization among all models tested. DIRE and FIRE, despite their theoretically motivated approach to detecting diffusion-generated images through reconstruction error, prove to be the least generalizable in practice, failing to transfer even after fine-tuning. These findings highlight that strong in-distribution accuracy is not a reliable indicator of real-world robustness, and that generalization to unseen generators remains an open and important challenge for diffusion-generated image detection.

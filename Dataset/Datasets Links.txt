@@ -1,0 +1,8 @@
+Original Dataset (we take subsets from here):
+https://huggingface.co/datasets/ComplexDataLab/OpenFake
+
+ID Dataset:
+https://drive.google.com/file/d/1lDp3qD5K-PUzAg1Wi7SOCxCPDs3N8HP1/view?usp=drive_link
+
+OOD Dataset:
+https://drive.google.com/file/d/1blmjYYgCLWcxeoPLcZOaVHaG1lBFGkD_/view?usp=drive_link

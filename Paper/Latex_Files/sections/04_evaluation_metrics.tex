@@ -1,0 +1,37 @@
+\section{Evaluation Metrics}
+\label{sec:evaluation-metrics}
+
+Model performance was evaluated using accuracy, precision, recall, F1-score, and area under the ROC curve (ROC AUC). Precision, recall, and F1-score are reported separately for the real and fake classes, in addition to macro-averaged scores. This class-wise reporting is important because overall accuracy can be misleading under the 1:2 real-to-fake class imbalance.
+
+\subsection{Accuracy}
+\label{subsec:accuracy}
+Accuracy measures the proportion of correctly classified samples among the total:
+\begin{equation}
+\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
+\end{equation}
+where TP and TN represent true positive and true negative predictions, while FP and FN denote false positive and false negative predictions, respectively.
+
+\subsection{Precision}
+\label{subsec:precision}
+Precision measures the proportion of predicted positives that are truly positive:
+\begin{equation}
+\text{Precision} = \frac{TP}{TP + FP}
+\end{equation}
+
+\subsection{Recall}
+\label{subsec:recall}
+Recall (sensitivity) measures the proportion of actual positive samples correctly identified by the model:
+\begin{equation}
+\text{Recall} = \frac{TP}{TP + FN}
+\end{equation}
+
+\subsection{F1-Score}
+\label{subsec:f1-score}
+The F1-score is the harmonic mean of precision and recall:
+\begin{equation}
+F1 = \frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
+\end{equation}
+
+\subsection{Area Under the ROC Curve (AUC)}
+\label{subsec:auc}
+AUC measures the probability that the model ranks a randomly chosen positive sample higher than a randomly chosen negative sample. An AUC of 0.5 corresponds to random chance, while 1.0 indicates perfect separability.

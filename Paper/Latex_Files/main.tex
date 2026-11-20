@@ -1,0 +1,94 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+% Packages from the IEEE conference template.
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{url}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{float}
+\pgfplotsset{compat=1.18}
+\usepackage[
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=blue,
+  filecolor=black,
+  pdfborder={0 0 0}
+]{hyperref}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{needspace}
+
+\captionsetup[table]{font=footnotesize,skip=2pt}
+
+% Bibliography setup.
+% Compile with Biber.
+\usepackage[style=ieee,backend=biber,sorting=none]{biblatex}
+\addbibresource{citations.bib}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Table formatting
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{caption}
+
+% Keeps float pages from vertically centering a table alone
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
+
+% Compact table captions
+\captionsetup[table]{font=footnotesize,skip=3pt}
+
+\raggedbottom
+
+\begin{document}
+
+\title{Comparative Analysis of Deepfake Detection Models for Diffusion-Generated Images}
+
+\author{
+\IEEEauthorblockN{Basma Elhoseny, Fatema Kotb, Habiba Assem, Khadija Swelam, and Menna Abdelbaset}
+\IEEEauthorblockA{
+\textit{Computer Engineering Program, Faculty of Engineering, Cairo University}\\
+Cairo, Egypt\\
+\begin{tabular}{c}
+basma.elhoseny01@eng-st.cu.edu.eg, fatema.kotb02@eng-st.cu.edu.eg, habiba.osman00@eng-st.cu.edu.eg\\
+khadija.swelam00@eng-st.cu.edu.eg, menamohamed0207@gmail.com
+\end{tabular}
+}
+}
+
+\maketitle
+
+\begin{abstract}
+\input{sections/00_abstract}
+\end{abstract}
+
+\begin{IEEEkeywords}
+deepfake detection, diffusion models, image forensics, fine-tuning, zero-shot generalization, CNNDetect, EfficientNet, CLIP, LoRA, DIRE, FIRE
+\end{IEEEkeywords}
+
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_methodology}
+\input{sections/04_evaluation_metrics}
+\input{sections/05_results_and_discussion}
+\input{sections/06_comparitive_discussion}
+\input{sections/07_conclusion}
+
+\clearpage
+\onecolumn
+\appendices
+\include{sections/08_appendix_results_tables}
+
+\printbibliography
+
+\end{document}
